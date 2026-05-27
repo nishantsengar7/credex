@@ -26,6 +26,7 @@ export const auditFormSchema = z.object({
   company: z.string().optional(),
   role: z.string().optional(),
   companySize: z.coerce.number().min(1, "Company size must be at least 1").optional(),
+  _contact_me_by_fax_only: z.string().optional(), // Honeypot field
 });
 
 export type ToolEntry = z.infer<typeof toolEntrySchema>;

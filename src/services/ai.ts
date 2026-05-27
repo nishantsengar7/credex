@@ -14,8 +14,8 @@ export const aiService = {
     }
 
     try {
-      // Use gemini-pro for stable text generation
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      // Use gemini-3.5-flash for fast and stable text generation
+      const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
 
       const prompt = `
         You are an expert SaaS procurement analyst. 

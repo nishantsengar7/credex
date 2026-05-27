@@ -36,11 +36,12 @@ export function AuditForm() {
 
 
   const form = useForm<AuditFormValues>({
-    resolver: zodResolver(auditFormSchema),
+    resolver: zodResolver(auditFormSchema) as any,
     defaultValues: {
       tools: [
         { toolName: "", plan: "", monthlySpend: 0, seats: 1, teamSize: 1, primaryUseCase: "" },
       ],
+      _contact_me_by_fax_only: "",
     },
   });
 
@@ -373,6 +374,20 @@ export function AuditForm() {
               )}
             />
           </div>
+
+          {/* Honeypot Field - Hidden from humans, traps bots */}
+          <FormField
+            control={form.control}
+            name="_contact_me_by_fax_only"
+            render={({ field }) => (
+              <FormItem className="hidden absolute -z-50 opacity-0 pointer-events-none" aria-hidden="true">
+                <FormLabel>Fax Number</FormLabel>
+                <FormControl>
+                  <Input autoComplete="off" tabIndex={-1} {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
         </div>
 
         {/* Action Buttons */}
